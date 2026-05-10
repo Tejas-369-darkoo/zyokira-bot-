@@ -140,4 +140,4 @@ client.on("messageCreate", async (message) => {
     }
 });
 
-client.login("MTUwMzAyMDIyNDEwNDg5MDQ2OA.G_Wt0s.K2X7G__jcMoevZxS-J5sxNPEFqEj9drkHYWziY");
+client.login("YOUR_BOT_TOKEN");
