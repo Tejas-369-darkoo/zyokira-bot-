@@ -93,7 +93,11 @@ client.on("messageCreate", async (message) => {
         if (!text) return message.reply("Kya bolu?");
         return message.channel.send(text);
     }
-
+ // 🖼️ avatar
+    if (command === "avatar") {
+        const user = message.mentions.users.first() || message.author;
+        return message.reply(user.displayAvatarURL({ dynamic: true, size: 1024 }));
+    }
     // 👤 userinfo
     if (command === "userinfo") {
         const embed = new EmbedBuilder()
@@ -112,6 +116,22 @@ client.on("messageCreate", async (message) => {
         return message.reply(`📊 Level: ${level} | XP: ${xp}`);
     }
 
+     // ⏰ remind
+    if (command === "remind") {
+        const time = parseInt(args[0]);
+        const text = args.slice(1).join(" ");
+
+        if (!time || !text) {
+            return message.reply("Use: !remind 5 study");
+        }
+
+        message.reply(`⏰ Reminder set for ${time} seconds`);
+
+        setTimeout(() => {
+            message.reply(`🔔 Reminder: ${text}`);
+        }, time * 1000);
+    }
+
     // 😂 joke
     if (command === "joke") {
         try {
@@ -120,7 +140,7 @@ client.on("messageCreate", async (message) => {
         } catch {
             return message.reply("Joke nahi mila 😢");
         }
-    }
+    } 
 
     // 🤖 AI CHAT (MAIN FEATURE)
     if (command === "ai") {
